@@ -6,16 +6,12 @@ from PIL import Image
 from streamlit_option_menu import option_menu
 
 # Set page configuration
-st.set_page_config(page_title="Health Assistant",
+st.set_page_config(page_title="Diabetes Predict App",
                    layout="wide",
-                   page_icon="🧑")
+                   page_icon="🩺")
 
-# Load the trained svm model
-@st.cache_data
-def load_svm_model():
-    return pickle.load(open(r'G:\DATA SCIENCE-25\SMALL_dataset\ML\supervised\classification\Diabetes-Prediction-App\model\SVM.pkl', 'rb'))
+db_model = pickle.load(open(r"G:\DATA SCIENCE-25\SMALL_dataset\ML\supervised\classification\Diabetes-Prediction-App\note_model\svm_model.sav", 'rb'))
 
-svm_model = load_svm_model()
 
 # Define the Streamlit app
 def main():
@@ -87,7 +83,7 @@ def main():
 
         # Predict using the model
         if st.button("Predict"):
-            prediction = svm_model.predict(input_data)
+            prediction = db_model.predict(input_data)
             
             if prediction[0] == 0:
                 st.success("The model predicts that the person is not diabetic.")
