@@ -10,8 +10,6 @@ st.set_page_config(page_title="Diabetes Predict App",
                    layout="wide",
                    page_icon="🩺")
 
-db_model = pickle.load(open(r"G:\DATA SCIENCE-25\SMALL_dataset\ML\supervised\classification\Diabetes-Prediction-App\note_model\svm_model.sav", 'rb'))
-
 
 # Define the Streamlit app
 def main():
@@ -80,6 +78,8 @@ def main():
             'DiabetesPedigreeFunction': [diabetes_pedigree_function],
             'Age': [age]
         })
+        
+        db_model = pickle.load(open(r"G:\DATA SCIENCE-25\SMALL_dataset\ML\supervised\classification\Diabetes-Prediction-App\svm_model.sav", 'rb'))
 
         # Predict using the model
         if st.button("Predict"):
