@@ -23,7 +23,7 @@ def main():
             default_index=0
         )
         
-        img = Image.open("G:\DATA SCIENCE-25\SMALL_dataset\ML\supervised\classification\Diabetes-Prediction-App\static\diabetes-01.jpg")
+        img = Image.open("G:\DATA SCIENCE-25\SMALL_dataset\ML\supervised\classification\Diabetes-Prediction-App\diabetes-01.jpg")
         st.image(img, width=290)
     
     st.header("🩺 Welcome to Diabetes Prediction App👉🏼")
