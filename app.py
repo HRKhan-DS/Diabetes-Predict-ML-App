@@ -11,8 +11,7 @@ st.set_page_config(page_title="Health Assistant",
                    page_icon="🧑")
 
 # Load the trained Random Forest model
-with open(r'G:\DATA SCIENCE-25\SMALL_dataset\ML\supervised\classification\Diabetes-Prediction-App\SVM.pkl', 'rb') as model_file:
-    svm_model = pickle.load(model_file)
+svm_model =  pickle.load(open(r'G:\DATA SCIENCE-25\SMALL_dataset\ML\supervised\classification\Diabetes-Prediction-App\SVM.pkl', 'rb'))
 
 # Define the Streamlit app
 def main():
