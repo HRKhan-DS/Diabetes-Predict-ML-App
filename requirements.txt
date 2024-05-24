@@ -1,0 +1,7 @@
+# Add more dependencies here
+streamlit
+numpy
+pandas
+Pillow
+streamlit-option-menu
+scikit-learn
