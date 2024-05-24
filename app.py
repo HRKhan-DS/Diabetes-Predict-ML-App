@@ -4,12 +4,12 @@ import pandas as pd
 import pickle
 from PIL import Image
 from streamlit_option_menu import option_menu
+import os
 
 # Set page configuration
 st.set_page_config(page_title="Diabetes Predict App",
                    layout="wide",
                    page_icon="🩺")
-
 
 # Define the Streamlit app
 def main():
@@ -22,8 +22,12 @@ def main():
             menu_icon='hospital-fill',
             default_index=0
         ) 
-        img = Image.open(r"G:\DATA SCIENCE-25\SMALL_dataset\ML\supervised\classification\Diabetes-Prediction-App\diabetes-01.jpg")
-        st.image(img, width=290)
+        try:
+            img_path = os.path.join(os.path.dirname(__file__), 'diabetes-01.jpg')
+            img = Image.open(img_path)
+            st.image(img, width=290)
+        except FileNotFoundError:
+            st.error("Image file not found. Please make sure 'diabetes-01.jpg' is in the same directory as this script.")
     
     st.header("🩺 Welcome to Diabetes Prediction App👉🏼")
     
@@ -78,16 +82,20 @@ def main():
             'Age': [age]
         })
         
-        db_model = pickle.load(open(r"G:\DATA SCIENCE-25\SMALL_dataset\ML\supervised\classification\Diabetes-Prediction-App\svm_model.sav", 'rb'))
+        try:
+            model_path = os.path.join(os.path.dirname(__file__), 'svm_model.sav')
+            db_model = pickle.load(open(model_path, 'rb'))
 
-        # Predict using the model
-        if st.button("Predict"):
-            prediction = db_model.predict(input_data)
-            
-            if prediction[0] == 0:
-                st.success("The model predicts that the person is not diabetic.")
-            else:
-                st.success("The model predicts that the person is diabetic.")
+            # Predict using the model
+            if st.button("Predict"):
+                prediction = db_model.predict(input_data)
+                
+                if prediction[0] == 0:
+                    st.success("The model predicts that the person is not diabetic.")
+                else:
+                    st.success("The model predicts that the person is diabetic.")
+        except FileNotFoundError:
+            st.error("Model file not found. Please make sure 'svm_model.sav' is in the same directory as this script.")
             
     elif selected == 'About':
         st.subheader("About the App")
