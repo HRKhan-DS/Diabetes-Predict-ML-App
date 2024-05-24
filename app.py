@@ -13,7 +13,7 @@ st.set_page_config(page_title="Health Assistant",
 # Load the trained svm model
 @st.cache_data
 def load_svm_model():
-    return pickle.load(open(r'G:\DATA SCIENCE-25\SMALL_dataset\ML\supervised\classification\Diabetes-Prediction-App\SVM.pkl', 'rb'))
+    return pickle.load(open(r'G:\DATA SCIENCE-25\SMALL_dataset\ML\supervised\classification\Diabetes-Prediction-App\model\SVM.pkl', 'rb'))
 
 svm_model = load_svm_model()
 
